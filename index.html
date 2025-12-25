@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Nancy ❤️ | Christmas App</title>
+  <style>
+    :root{--red:#b30000;--green:#013220;--pink:#ff4d6d;--gold:#ffd166}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:linear-gradient(135deg,var(--red),var(--green));color:#fff;overflow:hidden}
+    .page{display:none;height:100vh;overflow-y:auto;padding-bottom:96px;animation:fade .6s ease}
+    .page.active{display:block}
+    @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1}}
+    header{padding:36px 20px;text-align:center;background:rgba(0,0,0,.35);backdrop-filter:blur(8px)}
+    h1{margin:0;font-size:2.1rem}
+    header p{margin-top:6px;opacity:.9}
+    .card{background:rgba(255,255,255,.15);margin:18px 14px;padding:22px;border-radius:22px;box-shadow:0 12px 30px rgba(0,0,0,.45);animation:pop .7s ease}
+    @keyframes pop{from{transform:scale(.95);opacity:0}to{transform:scale(1);opacity:1}}
+    .tree{font-size:4rem;animation:glow 2s infinite alternate}
+    @keyframes glow{from{text-shadow:0 0 10px gold}to{text-shadow:0 0 30px yellow}}
+    button{background:linear-gradient(135deg,var(--pink),#ff7a8a);border:none;color:#fff;padding:12px 24px;border-radius:30px;font-size:1rem;margin-top:14px}
+    .notes{display:flex;gap:10px;overflow-x:auto}
+    .note{min-width:80%;background:rgba(0,0,0,.25);padding:16px;border-radius:16px}
+    .nav{position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);display:flex;justify-content:space-around;padding:12px 0;font-size:1.3rem}
+    canvas{position:fixed;inset:0;pointer-events:none}
+    .lock{display:flex;align-items:center;justify-content:center;min-height:50vh}
+    input{padding:10px 14px;border-radius:999px;border:none;margin-top:10px}
+  </style>
+</head>
+<body>
+<canvas id="snow"></canvas><!-- PAGE 1 HOME --><div class="page active" id="home">
+  <header><h1>🎄 Merry Christmas 🎄</h1><p>For Nancy ❤️</p></header>
+  <div class="card">
+    <div class="tree">🎄</div>
+    <h2>For You, Nancy ✨</h2>
+    <p>May this Christmas bring you calm mornings, gentle nights, and little reasons to smile all day long.</p>
+    <p>May warmth follow you wherever you go, and may kindness always find its way back to you.</p>
+    <button onclick="wish()">Open Your Wish 🎁</button>
+    <button onclick="toggleMusic()">Music 🔔</button>
+  </div>
+</div><!-- PAGE 2 NOTES --><div class="page" id="notes">
+  <header><h1>💌 Little Love Notes</h1><p>Soft words, warm feelings</p></header>
+  <div class="card">
+    <div class="notes">
+      <div class="note">Warm lights, quiet evenings, and peaceful thoughts made sweeter by you.</div>
+      <div class="note">Some hearts make seasons brighter just by being gentle and kind.</div>
+      <div class="note">May happiness sit beside you like a cozy blanket.</div>
+    </div>
+  </div>
+</div><!-- PAGE 3 SWEET THOUGHTS --><div class="page" id="thoughts">
+  <header><h1>💖 Sweet Thoughts</h1><p>Words wrapped with care</p></header>
+  <div class="card">
+    <p>Christmas isn’t only about lights and gifts — it’s about the quiet comfort that fills the air.</p>
+    <p>May your days feel lighter, your nights feel calmer, and your heart feel understood.</p>
+    <p>You deserve moments that feel soft, safe, and full of warmth.</p>
+  </div>
+  <div class="card">
+    <p>If this season had a feeling, it would be a gentle smile — the kind that stays even after the lights fade.</p>
+    <p>May that feeling stay with you long after Christmas ends.</p>
+  </div>
+</div><!-- PAGE 4 LOCKED SURPRISE --><div class="page" id="lock">
+  <header><h1>🔒 A Small Surprise</h1><p>Only for Nancy</p></header>
+  <div class="card lock" id="locked">
+    <div>
+      <p>Enter the secret word to open</p>
+      <input id="pwd" placeholder="hint: christmas" />
+      <br><button onclick="unlock()">Unlock ✨</button>
+    </div>
+  </div>
+  <div class="card" id="unlocked" style="display:none">
+    <p>Merry Christmas, Nancy ❤️</p>
+    <p>May you always feel cared for, appreciated, and gently loved.</p>
+    <p>Thank you for being you — soft, kind, and special.</p>
+    <p style="margin-top:12px"><strong>— from your hubby 💖</strong></p>
+  </div>
+</div><div class="nav">
+  <span onclick="go('home')">🏠</span>
+  <span onclick="go('notes')">💌</span>
+  <span onclick="go('thoughts')">💖</span>
+  <span onclick="go('lock')">🔒</span>
+</div><audio id="music" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2021/12/27/audio_7b3a0e0a64.mp3" type="audio/mpeg">
+</audio><script>
+  function wish(){alert('🎄 Merry Christmas, Nancy! May your days be warm and bright ❤️')}
+  function go(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active')}
+  const music=document.getElementById('music');let playing=false;function toggleMusic(){playing?music.pause():music.play();playing=!playing}
+  function unlock(){if(document.getElementById('pwd').value.toLowerCase()==='christmas'){document.getElementById('locked').style.display='none';document.getElementById('unlocked').style.display='block'}else alert('Try again 🙂')}
+  const c=document.getElementById('snow'),x=c.getContext('2d');let w,h,flakes=[];function resize(){w=c.width=innerWidth;h=c.height=innerHeight}window.onresize=resize;resize();for(let i=0;i<120;i++)flakes.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*3+1,s:Math.random()+.5});(function snow(){x.clearRect(0,0,w,h);x.fillStyle='white';flakes.forEach(f=>{x.beginPath();x.arc(f.x,f.y,f.r,0,Math.PI*2);x.fill();f.y+=f.s;if(f.y>h){f.y=0;f.x=Math.random()*w}});requestAnimationFrame(snow)})();
+</script></body>
+    </html>
