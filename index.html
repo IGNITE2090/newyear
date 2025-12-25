@@ -1,4 +1,4 @@
- <!DOCTYPE html><html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,8 +36,8 @@ input{padding:10px 14px;border-radius:999px;border:none;margin-top:10px;text-ali
 <h2>For You, Nancy ✨</h2>
 <p>May this Christmas bring you calm mornings, cozy nights, and little moments that make your heart smile.</p>
 <p>Every twinkling light reminds me how bright you make my world.</p>
+<button id="musicBtn">Music 🔔</button>
 <button onclick="wish()">Open Your Wish 🎁</button>
-<button onclick="toggleMusic()">Music 🔔</button>
 </div>
 </div><!-- PAGE 2 NOTES --><div class="page" id="notes">
 <header><h1>💌 Little Love Notes</h1><p>Soft words, warm feelings</p></header>
@@ -77,25 +77,23 @@ input{padding:10px 14px;border-radius:999px;border:none;margin-top:10px;text-ali
 <span onclick="go('notes')">💌</span>
 <span onclick="go('thoughts')">💖</span>
 <span onclick="go('lock')">🔒</span>
-</div><!-- Music --><audio id="music" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2021/12/27/audio_7b3a0e0a64.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio><script>
+</div><script>
 function wish(){alert('🎄 Merry Christmas, Nancy! May your days be warm and bright ❤️')}
 function go(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active')}
 
-// Music toggle
-const music = document.getElementById('music');
+// Mobile-friendly music
+const music = new Audio('https://cdn.pixabay.com/download/audio/2021/12/27/audio_7b3a0e0a64.mp3');
+music.loop = true;
 let playing = false;
-function toggleMusic() {
+document.getElementById('musicBtn').addEventListener('click', () => {
   if(!playing){
-    music.play().catch(e => alert("Tap to start music on mobile 🎵"));
+    music.play().catch(e => alert("Tap the button to start music on mobile 🎵"));
     playing = true;
   } else {
     music.pause();
     playing = false;
   }
-}
+});
 
 // Unlock surprise
 function unlock(){
@@ -108,20 +106,8 @@ function unlock(){
 // Snow animation
 const c=document.getElementById('snow'),x=c.getContext('2d');
 let w,h,flakes=[];
-function resize(){w=c.width=innerWidth;h=c.height=innerHeight}
-window.onresize=resize;resize();
+function resize(){w=c.width=innerWidth;h=c.height=innerHeight}window.onresize=resize;resize();
 for(let i=0;i<200;i++)flakes.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*3+1,s:Math.random()+.5});
-(function snow(){
-  x.clearRect(0,0,w,h);
-  x.fillStyle='white';
-  flakes.forEach(f=>{
-    x.beginPath();
-    x.arc(f.x,f.y,f.r,0,Math.PI*2);
-    x.fill();
-    f.y+=f.s;
-    if(f.y>h){f.y=0;f.x=Math.random()*w}
-  });
-  requestAnimationFrame(snow)
-})();
+(function snow(){x.clearRect(0,0,w,h);x.fillStyle='white';flakes.forEach(f=>{x.beginPath();x.arc(f.x,f.y,f.r,0,Math.PI*2);x.fill();f.y+=f.s;if(f.y>h){f.y=0;f.x=Math.random()*w}});requestAnimationFrame(snow)})();
 </script></body>
-</html>
+ </html>
