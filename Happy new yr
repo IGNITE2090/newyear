@@ -38,6 +38,24 @@ canvas{position:fixed;inset:0;pointer-events:none;z-index:0;}
 #lock input{padding:12px;width:80%;max-width:300px;border:none;border-radius:20px;font-size:1.1rem;text-align:center;outline:none;}
 #lock button{margin-top:20px;padding:12px 30px;border:none;border-radius:25px;background:#ff4d6d;color:white;font-size:1.1rem;cursor:pointer;}
 #error{color:white;margin-top:15px;display:none;}
+
+/* NEW FLASHY BUTTON */
+#secretBtn{
+  margin-top:20px;
+  padding:18px 50px;
+  font-size:1.4rem;
+  border:none;
+  border-radius:50px;
+  background:linear-gradient(45deg,#ff6a9e,#ffb3c6,#ff6a9e);
+  color:white;
+  cursor:pointer;
+  box-shadow:0 0 20px #ff4d6d,0 0 40px #ffb3c6;
+  animation:glowPulse 1.5s infinite alternate, bounce 2s infinite;
+  transition:0.3s;
+}
+#secretBtn:hover{transform:scale(1.15);}
+@keyframes glowPulse{0%{box-shadow:0 0 20px #ff4d6d,0 0 40px #ffb3c6;}100%{box-shadow:0 0 30px #ff4d6d,0 0 60px #ffb3c6;}}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
 </style>
 </head>
 <body>
@@ -54,7 +72,7 @@ canvas{position:fixed;inset:0;pointer-events:none;z-index:0;}
     <h1 id="typing"></h1>
     <p>This New Year is special… because it’s for <b>Wifey</b> 💖</p>
     <button onclick="startMagic()">Start ✨</button>
-    <button onclick="document.getElementById('secretPage').scrollIntoView({behavior:'smooth'})">Open Secret Page 💖</button>
+    <button id="secretBtn" onclick="document.getElementById('secretPage').scrollIntoView({behavior:'smooth'})">Open Secret Page 💖</button>
   </div>
 </section>
 
