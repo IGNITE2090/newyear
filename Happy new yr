@@ -57,7 +57,11 @@ canvas{position:fixed;inset:0;pointer-events:none;z-index:0;}
   display:none;
   z-index:5;
   text-align:center;
+  animation:surprisePop 2s ease forwards;
 }
+@keyframes surprisePop{0%{transform:translate(-50%,-50%) scale(0);}50%{transform:translate(-50%,-50%) scale(1.2);}100%{transform:translate(-50%,-50%) scale(1);}}
+/* Love giant text */
+.love-big{font-size:1.8rem;line-height:2.2;text-align:left;max-height:70vh;overflow-y:auto;padding:20px;scroll-behavior:smooth;}
 </style>
 </head>
 <body>
@@ -90,7 +94,68 @@ canvas{position:fixed;inset:0;pointer-events:none;z-index:0;}
   </div>
 </section>
 
-<!-- LOVE PAGES -->
+<!-- EXTRA LOVE PAGE: 50 sentences for Nancy -->
+<section class="animated-bg" style="background:linear-gradient(135deg,#fddb92,#d1fdff); color:#333;">
+  <div class="card">
+    <h1 class="heartbeat">Nancy, You Are Beautiful 💖</h1>
+    <div class="love-big">
+      <p>
+      1. You light up every room you enter.<br>
+      2. Your smile is pure magic.<br>
+      3. Your laughter is my favorite sound.<br>
+      4. You are amazing in every way.<br>
+      5. Your eyes shine like stars.<br>
+      6. Your kindness is inspiring.<br>
+      7. You are my sunshine.<br>
+      8. Your voice is music to my ears.<br>
+      9. Your presence makes everything better.<br>
+      10. I admire your courage.<br>
+      11. You are smart and beautiful.<br>
+      12. Your creativity amazes me.<br>
+      13. You make life colorful.<br>
+      14. You are my favorite person.<br>
+      15. I love your energy.<br>
+      16. You are graceful and elegant.<br>
+      17. You are endlessly charming.<br>
+      18. Your heart is pure gold.<br>
+      19. You inspire me every day.<br>
+      20. You are truly one of a kind.<br>
+      21. I love your honesty.<br>
+      22. Your hugs are the best.<br>
+      23. You have a beautiful soul.<br>
+      24. You are my everything.<br>
+      25. You make me feel alive.<br>
+      26. I love your sense of humor.<br>
+      27. You are gentle and strong.<br>
+      28. You make the world brighter.<br>
+      29. You are always thoughtful.<br>
+      30. I love how you care.<br>
+      31. You are precious to me.<br>
+      32. Your smile melts my heart.<br>
+      33. You are my inspiration.<br>
+      34. I adore your spirit.<br>
+      35. You are radiant.<br>
+      36. You are my dream come true.<br>
+      37. You make my heart flutter.<br>
+      38. You are lovely inside and out.<br>
+      39. I love your warmth.<br>
+      40. You are amazing just as you are.<br>
+      41. You are my queen.<br>
+      42. You make me feel complete.<br>
+      43. I love your soul.<br>
+      44. You are enchanting.<br>
+      45. You are my heartbeat.<br>
+      46. You make me smile every day.<br>
+      47. You are adorable.<br>
+      48. I cherish every moment with you.<br>
+      49. You are beautiful beyond words.<br>
+      50. I love you so so much, forever 💖.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Other love pages -->
 <section class="animated-bg" style="background:linear-gradient(135deg,#ffdde1,#ee9ca7);">
   <div class="card">
     <h1 class="heartbeat">I Love You 🤍</h1>
@@ -114,43 +179,38 @@ canvas{position:fixed;inset:0;pointer-events:none;z-index:0;}
 
 <script>
 window.onload = () => {
-  /* Typing effect */
+  const typing = document.getElementById("typing");
   const msg="🎆 Happy New Year Wifey 🎆";
   let i=0;
   typing.innerHTML="";
-  (function type(){
-    if(i<msg.length){
-      typing.innerHTML+=msg.charAt(i++);
-      setTimeout(type,100);
-    }
-  })();
+  (function type(){if(i<msg.length){typing.innerHTML+=msg.charAt(i++);setTimeout(type,100);}})();
 
-  /* Music + Start Fireworks */
   const music = document.getElementById("music");
-  window.startMagic = () => {
-    music.play();
-    startFireworks();
-  };
-
-  /* Countdown */
-  const newYear = new Date(new Date().getFullYear()+1,0,1);
   const surpriseText = document.getElementById("surpriseText");
 
+  window.startMagic = () => {music.play(); startFireworks();};
+
+  const newYear = new Date(new Date().getFullYear()+1,0,1);
   setInterval(()=>{
     const d = newYear - new Date();
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+    const nyText = document.getElementById("nyText");
     if(d<=0){
       nyText.innerText="🎉 HAPPY NEW YEAR WIFEY 🎉";
-      surpriseText.style.display="block"; // Show surprise text
+      surpriseText.style.display="block";
       startFireworks();
       return;
     }
-    days.innerText=Math.floor(d/86400000);
-    hours.innerText=Math.floor(d/3600000)%24;
-    minutes.innerText=Math.floor(d/60000)%60;
-    seconds.innerText=Math.floor(d/1000)%60;
+    daysEl.innerText=Math.floor(d/86400000);
+    hoursEl.innerText=Math.floor(d/3600000)%24;
+    minutesEl.innerText=Math.floor(d/60000)%60;
+    secondsEl.innerText=Math.floor(d/1000)%60;
   },1000);
 
-  /* Floating hearts */
+  /* Hearts */
   for(let j=0;j<35;j++){
     let h=document.createElement("div");
     h.className="heart";
@@ -184,12 +244,11 @@ window.onload = () => {
     }
   });
 
-  /* Fireworks engine */
+  /* Fireworks */
   const c = document.getElementById("fireworks");
   const ctx = c.getContext("2d");
   c.width = innerWidth; c.height = innerHeight;
   let fw=[], pt=[];
-
   class F{constructor(x,y){this.x=x;this.y=c.height;this.t=y;this.c=`hsl(${Math.random()*360},100%,60%)`;}
     u(){this.y-=8;if(this.y<=this.t){for(let i=0;i<80;i++)pt.push(new P(this.x,this.y,this.c));return true;}}
     d(){ctx.fillStyle=this.c;ctx.fillRect(this.x,this.y,3,10);}
@@ -199,7 +258,6 @@ window.onload = () => {
     d(){ctx.beginPath();ctx.arc(this.x,this.y,2,0,Math.PI*2);ctx.fillStyle=this.c;ctx.fill();}
   }
   function startFireworks(){ setInterval(()=>{for(let i=0;i<4;i++) fw.push(new F(Math.random()*c.width,Math.random()*c.height/2)); },1200); }
-
   (function anim(){
     ctx.fillStyle="rgba(0,0,0,0.2)";
     ctx.fillRect(0,0,c.width,c.height);
@@ -207,11 +265,7 @@ window.onload = () => {
     pt=pt.filter(p=>{p.u();p.d();return p.l>0;});
     requestAnimationFrame(anim);
   })();
-
-  window.addEventListener("resize",()=>{
-    c.width=innerWidth;
-    c.height=innerHeight;
-  });
+  window.addEventListener("resize",()=>{c.width=innerWidth;c.height=innerHeight;});
 };
 </script>
 </body>
