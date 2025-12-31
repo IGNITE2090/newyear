@@ -2,251 +2,213 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy New Year Nancy ✨</title>
+<title>Happy New Year Nancy 💖</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 body{background:black;overflow-x:hidden;scroll-behavior:smooth;}
-
-section{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:40px;
-  color:white;
-}
-
-.card{
-  background:rgba(255,255,255,0.15);
-  backdrop-filter:blur(12px);
-  padding:50px;
-  border-radius:25px;
-  box-shadow:0 20px 40px rgba(0,0,0,0.4);
-  max-width:900px;
-  z-index:2;
-}
-
+section{min-height:100vh;display:flex;justify-content:center;align-items:center;text-align:center;padding:40px;color:white;}
+.card{background:rgba(255,255,255,0.15);backdrop-filter:blur(14px);padding:50px;border-radius:30px;box-shadow:0 25px 50px rgba(0,0,0,0.4);max-width:900px;z-index:2;}
 h1{font-size:3rem;margin-bottom:20px;}
-p{font-size:1.4rem;line-height:1.6;}
-
-#welcome{background:linear-gradient(135deg,#ff758c,#ff7eb3);}
-#countdownSec{background:linear-gradient(135deg,#000428,#004e92);}
-#cute{background:linear-gradient(135deg,#a18cd1,#fbc2eb);}
-#best{background:linear-gradient(135deg,#ff9a9e,#fad0c4);}
-#wishes{background:linear-gradient(135deg,#89f7fe,#66a6ff);}
-#languages{background:linear-gradient(135deg,#ffecd2,#fcb69f);}
-#final{background:linear-gradient(135deg,#000,#111);}
-#secret{background:black;display:none;}
-
-button{
-  margin-top:25px;
-  padding:14px 30px;
-  font-size:1.1rem;
-  border:none;
-  border-radius:30px;
-  background:#ff4d6d;
-  color:white;
-  cursor:pointer;
-  transition:0.3s;
-}
+p{font-size:1.4rem;line-height:1.7;}
+button{margin-top:25px;padding:14px 34px;font-size:1.1rem;border:none;border-radius:30px;background:#ff4d6d;color:white;cursor:pointer;transition:0.3s;}
 button:hover{transform:scale(1.1);}
 
+/* Typing */
+#typing{font-size:2.6rem;min-height:80px;}
+
 /* Countdown */
-#countdown{
-  display:flex;
-  gap:20px;
-  justify-content:center;
-  margin-top:25px;
-}
-.time{
-  background:rgba(255,255,255,0.2);
-  padding:20px;
-  border-radius:20px;
-  min-width:90px;
-}
-.time span{font-size:2.2rem;}
-.time small{opacity:0.8;}
-
-#typing{font-size:2.5rem;min-height:70px;}
-
-#cuteWord{
-  font-size:3rem;
-  margin-top:20px;
-  animation:pulse 1.5s infinite;
-}
-@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
+#countdown{display:flex;gap:20px;justify-content:center;margin-top:25px;flex-wrap:wrap;}
+.time{background:rgba(255,255,255,0.25);padding:20px;border-radius:20px;min-width:90px;}
+.time span{font-size:2.2rem;display:block;}
 
 /* Hearts */
-.heart{
-  position:fixed;
-  bottom:-20px;
-  font-size:22px;
-  animation:floatUp linear infinite;
-  opacity:0.7;
-  z-index:1;
-}
-@keyframes floatUp{
-  from{transform:translateY(0);}
-  to{transform:translateY(-120vh);}
-}
+.heart{position:fixed;bottom:-20px;font-size:22px;animation:floatUp linear infinite;opacity:0.7;z-index:1;}
+@keyframes floatUp{to{transform:translateY(-120vh);}}
 
-/* Fireworks */
-canvas{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:0;
-}
+/* Love rain */
+.love{position:fixed;top:-30px;font-size:26px;animation:fall linear infinite;opacity:0.85;z-index:1;}
+@keyframes fall{to{transform:translateY(120vh) rotate(360deg);}}
+
+/* Sparkles */
+.sparkle{position:fixed;width:6px;height:6px;border-radius:50%;pointer-events:none;animation:fadeOut 1s forwards;}
+@keyframes fadeOut{to{opacity:0; transform:scale(0);}}
+
+/* Heartbeat */
+.heartbeat{animation:beat 1.5s infinite;}
+@keyframes beat{0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
+
+/* Animated background */
+.animated-bg{background-size:400% 400%;animation:bgMove 12s ease infinite;}
+@keyframes bgMove{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+
+/* Fireworks canvas */
+canvas{position:fixed;inset:0;pointer-events:none;z-index:0;}
 </style>
 </head>
-
 <body>
 
 <canvas id="fireworks"></canvas>
-
 <audio id="music" loop>
-  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_5cdd6e60c7.mp3">
+  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_5cdd6e60c7.mp3" type="audio/mpeg">
 </audio>
 
-<section id="welcome">
+<!-- INTRO -->
+<section class="animated-bg" style="background:linear-gradient(135deg,#ff758c,#ff7eb3);">
   <div class="card">
     <h1 id="typing"></h1>
-    <p>This New Year feels special… because it’s for <b>Nancy</b> 💖</p>
-    <button onclick="startMagic()">Start the Magic ✨</button>
+    <p>This New Year is special… because it’s for <b>Nancy</b> 💖</p>
+    <button onclick="startMagic()">Start ✨</button>
   </div>
 </section>
 
-<section id="countdownSec">
+<!-- COUNTDOWN -->
+<section class="animated-bg" style="background:linear-gradient(135deg,#000428,#004e92);">
   <div class="card">
-    <h1 id="nyText">Countdown for Nancy 🎆</h1>
+    <h1 id="nyText" class="heartbeat">Countdown for Nancy 🎆</h1>
     <div id="countdown">
-      <div class="time"><span id="days">0</span><small>Days</small></div>
-      <div class="time"><span id="hours">0</span><small>Hours</small></div>
-      <div class="time"><span id="minutes">0</span><small>Minutes</small></div>
-      <div class="time"><span id="seconds">0</span><small>Seconds</small></div>
+      <div class="time"><span id="days">0</span>Days</div>
+      <div class="time"><span id="hours">0</span>Hours</div>
+      <div class="time"><span id="minutes">0</span>Minutes</div>
+      <div class="time"><span id="seconds">0</span>Seconds</div>
     </div>
   </div>
 </section>
 
-<section id="cute">
+<!-- LOVE PAGES -->
+<section class="animated-bg" style="background:linear-gradient(135deg,#ffdde1,#ee9ca7);">
   <div class="card">
-    <h1>Nancy is Cute 🌸</h1>
-    <p>Cute in a way that makes everything feel lighter.</p>
+    <h1 class="heartbeat">I Love You 🤍</h1>
+    <p>You made my year so good.<br>You made every day brighter.<br>I love you endlessly 💖</p>
   </div>
 </section>
 
-<section id="best">
+<section class="animated-bg" style="background:linear-gradient(135deg,#cfd9df,#e2ebf0);color:#333;">
   <div class="card">
-    <h1>Nancy is Special 💖</h1>
-    <p>Someone who makes moments feel warm and calm.</p>
+    <h1>You’re the Best 💫</h1>
+    <p>You’re honestly the best person I met.<br>You matter more than you know 💗</p>
   </div>
 </section>
 
-<section id="wishes">
+<section class="animated-bg" style="background:linear-gradient(135deg,#000,#434343);">
   <div class="card">
-    <h1>New Year Wishes for Nancy ✨</h1>
-    <p>Happiness, peace, confidence, and lots of smiles.</p>
+    <h1 class="heartbeat">I LOVE YOU ❤️</h1>
+    <p style="font-size:1.6rem;">Loudly. Proudly. Forever.<br><br>NTE KUTTI PEHNEEEEEEEEEEEEEEEE 💗</p>
   </div>
 </section>
 
-<section id="languages">
+<section class="animated-bg" style="background:linear-gradient(135deg,#fbc2eb,#a6c1ee);">
   <div class="card">
-    <h1>Nancy is Cute in Every Language 🌍</h1>
-    <div id="cuteWord">Cute 💕</div>
+    <h1>Hey Nancy 😌</h1>
+    <p>I love you when you smile.<br>I love you when you talk.<br>I love you when you’re just you 💕</p>
   </div>
 </section>
 
-<section id="final">
+<section class="animated-bg" style="background:linear-gradient(135deg,#ffecd2,#fcb69f);">
   <div class="card">
-    <h1>One Last Surprise for Nancy 🎆</h1>
-    <button onclick="unlock()">Unlock 🔐</button>
-  </div>
-</section>
-
-<section id="secret">
-  <div class="card">
-    <h1>🎁 For Nancy 🎁</h1>
-    <p style="font-size:1.7rem;">
-      HAPPY NEW YEAR NANCY 💗  
-      YOU ARE REALLY REALLY SPECIAL ✨
-    </p>
+    <h1 class="heartbeat">Forever 💖</h1>
+    <p style="font-size:1.6rem;">Thank you for making my year beautiful.<br>I love you. Always. 🤍</p>
   </div>
 </section>
 
 <script>
-/* Typing */
-const text="🎆 Happy New Year Nancy 🎆";
-let i=0;
-(function type(){
-  if(i<text.length){
-    typing.innerHTML+=text.charAt(i++);
-    setTimeout(type,100);
-  }
-})();
+window.onload = () => {
+  /* Typing effect */
+  const msg="🎆 Happy New Year Nancy 🎆";
+  let i=0;
+  typing.innerHTML="";
+  (function type(){
+    if(i<msg.length){
+      typing.innerHTML+=msg.charAt(i++);
+      setTimeout(type,100);
+    }
+  })();
 
-/* Music */
-function startMagic(){ music.play(); }
-
-/* Cute words */
-const words=["Cute","Adorable","Lovely","Beautiful","かわいい","귀여워","Carina","Bonita","Lindo","Süß","Jolie"];
-let w=0;
-setInterval(()=>{ cuteWord.innerText=words[w]+" 💖"; w=(w+1)%words.length; },1500);
-
-/* Countdown */
-const newYear=new Date(new Date().getFullYear()+1,0,1);
-setInterval(()=>{
-  const d=newYear-new Date();
-  if(d<=0){
-    nyText.innerText="🎉 HAPPY NEW YEAR NANCY 🎉";
+  /* Music + Start Fireworks */
+  window.startMagic = () => {
+    music.play();
     startFireworks();
-    return;
+  };
+
+  /* Countdown */
+  const newYear=new Date(new Date().getFullYear()+1,0,1);
+  setInterval(()=>{
+    const d=newYear-new Date();
+    if(d<=0){
+      nyText.innerText="🎉 HAPPY NEW YEAR NANCY 🎉";
+      startFireworks();
+      return;
+    }
+    days.innerText=Math.floor(d/86400000);
+    hours.innerText=Math.floor(d/3600000)%24;
+    minutes.innerText=Math.floor(d/60000)%60;
+    seconds.innerText=Math.floor(d/1000)%60;
+  },1000);
+
+  /* Floating hearts */
+  for(let j=0;j<35;j++){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="💗";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=(4+Math.random()*4)+"s";
+    document.body.appendChild(h);
   }
-  days.innerText=Math.floor(d/86400000);
-  hours.innerText=Math.floor(d/3600000)%24;
-  minutes.innerText=Math.floor(d/60000)%60;
-  seconds.innerText=Math.floor(d/1000)%60;
-},1000);
 
-/* Secret */
-function unlock(){
-  if(prompt("Enter the secret number 💭")==="48"){
-    secret.style.display="flex";
-    startFireworks();
+  /* Love rain */
+  setInterval(()=>{
+    const l=document.createElement("div");
+    l.className="love";
+    l.innerHTML=["❤️","💗","💞","💕"][Math.floor(Math.random()*4)];
+    l.style.left=Math.random()*100+"vw";
+    l.style.animationDuration=(5+Math.random()*4)+"s";
+    document.body.appendChild(l);
+    setTimeout(()=>l.remove(),9000);
+  },300);
+
+  /* Sparkles */
+  document.addEventListener("click",e=>{
+    for(let i=0;i<12;i++){
+      let s=document.createElement("div");
+      s.className="sparkle";
+      s.style.left=e.clientX+"px";
+      s.style.top=e.clientY+"px";
+      s.style.background=`hsl(${Math.random()*360},100%,80%)`;
+      document.body.appendChild(s);
+      setTimeout(()=>s.remove(),1000);
+    }
+  });
+
+  /* Fireworks engine */
+  const c = document.getElementById("fireworks");
+  const ctx = c.getContext("2d");
+  c.width = innerWidth; c.height = innerHeight;
+  let fw=[], pt=[];
+
+  class F{constructor(x,y){this.x=x;this.y=c.height;this.t=y;this.c=`hsl(${Math.random()*360},100%,60%)`;}
+    u(){this.y-=8;if(this.y<=this.t){for(let i=0;i<80;i++)pt.push(new P(this.x,this.y,this.c));return true;}}
+    d(){ctx.fillStyle=this.c;ctx.fillRect(this.x,this.y,3,10);}
   }
-}
+  class P{constructor(x,y,c){this.x=x;this.y=y;this.c=c;this.dx=(Math.random()-0.5)*7;this.dy=(Math.random()-0.5)*7;this.l=100;}
+    u(){this.dy+=0.05;this.x+=this.dx;this.y+=this.dy;this.l--;}
+    d(){ctx.beginPath();ctx.arc(this.x,this.y,2,0,Math.PI*2);ctx.fillStyle=this.c;ctx.fill();}
+  }
+  function startFireworks(){ setInterval(()=>{for(let i=0;i<4;i++) fw.push(new F(Math.random()*c.width,Math.random()*c.height/2)); },1200); }
 
-/* Hearts */
-for(let i=0;i<30;i++){
-  let h=document.createElement("div");
-  h.className="heart";
-  h.innerHTML="💗";
-  h.style.left=Math.random()*100+"vw";
-  h.style.animationDuration=(4+Math.random()*4)+"s";
-  document.body.appendChild(h);
-}
+  (function anim(){
+    ctx.fillStyle="rgba(0,0,0,0.2)";
+    ctx.fillRect(0,0,c.width,c.height);
+    fw=fw.filter(f=>{f.d();return !f.u();});
+    pt=pt.filter(p=>{p.u();p.d();return p.l>0;});
+    requestAnimationFrame(anim);
+  })();
 
-/* Fireworks */
-const c=fireworks,ctx=c.getContext("2d");
-c.width=innerWidth;c.height=innerHeight;
-let fw=[],pt=[];
-class F{constructor(x,y){this.x=x;this.y=c.height;this.t=y;this.c=`hsl(${Math.random()*360},100%,60%)`;}
-u(){this.y-=7;if(this.y<=this.t){for(let i=0;i<80;i++)pt.push(new P(this.x,this.y,this.c));return true;}}
-d(){ctx.fillStyle=this.c;ctx.fillRect(this.x,this.y,3,8);}}
-class P{constructor(x,y,c){this.x=x;this.y=y;this.c=c;this.dx=(Math.random()-0.5)*6;this.dy=(Math.random()-0.5)*6;this.l=100;}
-u(){this.dy+=0.05;this.x+=this.dx;this.y+=this.dy;this.l--;}
-d(){ctx.beginPath();ctx.arc(this.x,this.y,2,0,Math.PI*2);ctx.fillStyle=this.c;ctx.fill();}}
-function startFireworks(){setInterval(()=>fw.push(new F(Math.random()*c.width,Math.random()*c.height/2)),900);}
-(function anim(){
-  ctx.fillStyle="rgba(0,0,0,0.2)";
-  ctx.fillRect(0,0,c.width,c.height);
-  fw=fw.filter(f=>{f.d();return !f.u();});
-  pt=pt.filter(p=>{p.u();p.d();return p.l>0;});
-  requestAnimationFrame(anim);
-})();
+  /* Resize canvas on window resize */
+  window.addEventListener("resize",()=>{
+    c.width=innerWidth;
+    c.height=innerHeight;
+  });
+};
 </script>
-
 </body>
 </html>
