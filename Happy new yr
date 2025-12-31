@@ -96,7 +96,7 @@ canvas{position:fixed;inset:0;pointer-events:none;z-index:0;}
 
 <!-- EXTRA LOVE PAGE: 50 sentences for Nancy -->
 <section class="animated-bg" style="background:linear-gradient(135deg,#fddb92,#d1fdff); color:#333;">
-  <div class="card">
+  <div class="card" style="max-height:90vh; overflow-y:auto; padding:50px;">
     <h1 class="heartbeat">Nancy, You Are Beautiful 💖</h1>
     <div class="love-big">
       <p>
