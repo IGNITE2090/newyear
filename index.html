@@ -1,117 +1,252 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>Happy New Year Nancy ✨</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Nancy ❤️ | Christmas App</title>
+
 <style>
-:root{--red:#b30000;--green:#013220;--pink:#ff4d6d;--gold:#ffd166;--white:#fff}
-*{box-sizing:border-box}
-body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:linear-gradient(135deg,var(--red),var(--green));color:var(--white);overflow:hidden}
-.page{display:none;height:100vh;overflow-y:auto;padding-bottom:100px;animation:fade 0.6s ease}
-.page.active{display:block}
-@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1}}
-header{padding:36px 20px;text-align:center;background:rgba(0,0,0,.35);backdrop-filter:blur(8px)}
-h1{margin:0;font-size:2.2rem}
-header p{margin-top:6px;opacity:.9}
-.card{background:rgba(255,255,255,.15);margin:18px 14px;padding:22px;border-radius:22px;box-shadow:0 12px 30px rgba(0,0,0,.45);animation:pop 0.7s ease;transition:transform .3s ease}
-.card:hover{transform:scale(1.03)}
-@keyframes pop{from{transform:scale(.95);opacity:0}to{transform:scale(1);opacity:1}}
-.tree{font-size:4.5rem;animation:glow 2s infinite alternate}
-@keyframes glow{0%{text-shadow:0 0 10px gold}50%{text-shadow:0 0 30px yellow}100%{text-shadow:0 0 10px gold}}
-button{background:linear-gradient(135deg,var(--pink),#ff7a8a);border:none;color:var(--white);padding:12px 24px;border-radius:30px;font-size:1rem;margin-top:14px;cursor:pointer;transition:transform .2s ease}
-button:hover{transform:scale(1.1)}
-.notes{display:flex;gap:10px;overflow-x:auto}
-.note{min-width:80%;background:rgba(0,0,0,.25);padding:16px;border-radius:16px;flex-shrink:0}
-.nav{position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);display:flex;justify-content:space-around;padding:12px 0;font-size:1.3rem}
-canvas{position:fixed;inset:0;pointer-events:none}
-.lock{display:flex;align-items:center;justify-content:center;min-height:50vh;flex-direction:column}
-input{padding:10px 14px;border-radius:999px;border:none;margin-top:10px;text-align:center;font-weight:bold}
-</style>
-</head>
-<body>
-<canvas id="snow"></canvas><!-- PAGE 1 HOME --><div class="page active" id="home">
-<header><h1>🎄 Merry Christmas 🎄</h1><p>For Nancy ❤️</p></header>
-<div class="card">
-<div class="tree">🎄</div>
-<h2>For You, Nancy ✨</h2>
-<p>May this Christmas bring you calm mornings, cozy nights, and little moments that make your heart smile.</p>
-<p>Every twinkling light reminds me how bright you make my world.</p>
-<button id="musicBtn">Music 🔔</button>
-<button onclick="wish()">Open Your Wish 🎁</button>
-</div>
-</div><!-- PAGE 2 NOTES --><div class="page" id="notes">
-<header><h1>💌 Little Love Notes</h1><p>Soft words, warm feelings</p></header>
-<div class="card">
-<div class="notes">
-<div class="note">Warm lights, cozy evenings, and peaceful thoughts made sweeter by you.</div>
-<div class="note">Some hearts make seasons brighter just by being gentle and kind.</div>
-<div class="note">May happiness sit beside you like a soft blanket.</div>
-<div class="note">You’re my sunshine ☀️ even on cloudy days.</div>
-<div class="note">Every smile you give is a Christmas gift to me 🎁.</div>
-</div>
-</div>
-</div><!-- PAGE 3 SWEET THOUGHTS --><div class="page" id="thoughts">
-<header><h1>💖 Sweet Thoughts</h1><p>Words wrapped with care</p></header>
-<div class="card">
-<p>Christmas isn’t only about lights and gifts — it’s about the quiet comfort that fills the air.</p>
-<p>May your days feel lighter, your nights feel calmer, and your heart feel understood.</p>
-<p>You deserve moments that feel soft, safe, and full of warmth.</p>
-</div>
-<div class="card">
-<p>If this season had a feeling, it would be a gentle smile — the kind that stays even after the lights fade.</p>
-<p>May that feeling stay with you long after Christmas ends.</p>
-</div>
-</div><!-- PAGE 4 LOCKED SURPRISE --><div class="page" id="lock">
-<header><h1>🔒 A Small Surprise</h1><p>Only for Nancy</p></header>
-<div class="card lock" id="locked">
-<p>Enter the secret word to open</p>
-<input id="pwd" placeholder="hint: secret no. 48" />
-<br><button onclick="unlock()">Unlock ✨</button>
-</div>
-<div class="card" id="unlocked" style="display:none">
-<p style="font-size:1.6rem; color:#ffd166; text-align:center; font-weight:bold;">I LOVE YOUHHHHHHHHHHH NTE KUTTI PEHNEEEEEEEEEEEEEEEE ❤️🎄</p>
-<p style="margin-top:12px; text-align:center;"><strong>— from your hubby 💖</strong></p>
-</div>
-</div><div class="nav">
-<span onclick="go('home')">🏠</span>
-<span onclick="go('notes')">💌</span>
-<span onclick="go('thoughts')">💖</span>
-<span onclick="go('lock')">🔒</span>
-</div><!-- Music --><audio id="music" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2021/12/27/audio_7b3a0e0a64.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio><script>
-function wish(){alert('🎄 Merry Christmas, Nancy! May your days be warm and bright ❤️')}
-function go(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active')}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:black;overflow-x:hidden;scroll-behavior:smooth;}
 
-// Mobile-friendly music toggle
-const music = document.getElementById('music');
-let playing = false;
-document.getElementById('musicBtn').addEventListener('click', () => {
-  if(!playing){
-    music.play().catch(e => alert("Tap the button to start music on mobile 🎵"));
-    playing = true;
-    document.getElementById('musicBtn').textContent = "Pause 🔔";
-  } else {
-    music.pause();
-    playing = false;
-    document.getElementById('musicBtn').textContent = "Music 🔔";
-  }
-});
-
-// Unlock surprise
-function unlock(){
-  if(document.getElementById('pwd').value.toLowerCase()==='48'){
-    document.getElementById('locked').style.display='none';
-    document.getElementById('unlocked').style.display='block';
-  } else alert('Try again 🙂')
+section{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:40px;
+  color:white;
 }
 
-// Snow animation
-const c=document.getElementById('snow'),x=c.getContext('2d');
-let w,h,flakes=[];
-function resize(){w=c.width=innerWidth;h=c.height=innerHeight}window.onresize=resize;resize();
-for(let i=0;i<200;i++)flakes.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*3+1,s:Math.random()+.5});
-(function snow(){x.clearRect(0,0,w,h);x.fillStyle='white';flakes.forEach(f=>{x.beginPath();x.arc(f.x,f.y,f.r,0,Math.PI*2);x.fill();f.y+=f.s;if(f.y>h){f.y=0;f.x=Math.random()*w}});requestAnimationFrame(snow)})();
-</script></body>
+.card{
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(12px);
+  padding:50px;
+  border-radius:25px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.4);
+  max-width:900px;
+  z-index:2;
+}
+
+h1{font-size:3rem;margin-bottom:20px;}
+p{font-size:1.4rem;line-height:1.6;}
+
+#welcome{background:linear-gradient(135deg,#ff758c,#ff7eb3);}
+#countdownSec{background:linear-gradient(135deg,#000428,#004e92);}
+#cute{background:linear-gradient(135deg,#a18cd1,#fbc2eb);}
+#best{background:linear-gradient(135deg,#ff9a9e,#fad0c4);}
+#wishes{background:linear-gradient(135deg,#89f7fe,#66a6ff);}
+#languages{background:linear-gradient(135deg,#ffecd2,#fcb69f);}
+#final{background:linear-gradient(135deg,#000,#111);}
+#secret{background:black;display:none;}
+
+button{
+  margin-top:25px;
+  padding:14px 30px;
+  font-size:1.1rem;
+  border:none;
+  border-radius:30px;
+  background:#ff4d6d;
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+}
+button:hover{transform:scale(1.1);}
+
+/* Countdown */
+#countdown{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  margin-top:25px;
+}
+.time{
+  background:rgba(255,255,255,0.2);
+  padding:20px;
+  border-radius:20px;
+  min-width:90px;
+}
+.time span{font-size:2.2rem;}
+.time small{opacity:0.8;}
+
+#typing{font-size:2.5rem;min-height:70px;}
+
+#cuteWord{
+  font-size:3rem;
+  margin-top:20px;
+  animation:pulse 1.5s infinite;
+}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
+
+/* Hearts */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:22px;
+  animation:floatUp linear infinite;
+  opacity:0.7;
+  z-index:1;
+}
+@keyframes floatUp{
+  from{transform:translateY(0);}
+  to{transform:translateY(-120vh);}
+}
+
+/* Fireworks */
+canvas{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="fireworks"></canvas>
+
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_5cdd6e60c7.mp3">
+</audio>
+
+<section id="welcome">
+  <div class="card">
+    <h1 id="typing"></h1>
+    <p>This New Year feels special… because it’s for <b>Nancy</b> 💖</p>
+    <button onclick="startMagic()">Start the Magic ✨</button>
+  </div>
+</section>
+
+<section id="countdownSec">
+  <div class="card">
+    <h1 id="nyText">Countdown for Nancy 🎆</h1>
+    <div id="countdown">
+      <div class="time"><span id="days">0</span><small>Days</small></div>
+      <div class="time"><span id="hours">0</span><small>Hours</small></div>
+      <div class="time"><span id="minutes">0</span><small>Minutes</small></div>
+      <div class="time"><span id="seconds">0</span><small>Seconds</small></div>
+    </div>
+  </div>
+</section>
+
+<section id="cute">
+  <div class="card">
+    <h1>Nancy is Cute 🌸</h1>
+    <p>Cute in a way that makes everything feel lighter.</p>
+  </div>
+</section>
+
+<section id="best">
+  <div class="card">
+    <h1>Nancy is Special 💖</h1>
+    <p>Someone who makes moments feel warm and calm.</p>
+  </div>
+</section>
+
+<section id="wishes">
+  <div class="card">
+    <h1>New Year Wishes for Nancy ✨</h1>
+    <p>Happiness, peace, confidence, and lots of smiles.</p>
+  </div>
+</section>
+
+<section id="languages">
+  <div class="card">
+    <h1>Nancy is Cute in Every Language 🌍</h1>
+    <div id="cuteWord">Cute 💕</div>
+  </div>
+</section>
+
+<section id="final">
+  <div class="card">
+    <h1>One Last Surprise for Nancy 🎆</h1>
+    <button onclick="unlock()">Unlock 🔐</button>
+  </div>
+</section>
+
+<section id="secret">
+  <div class="card">
+    <h1>🎁 For Nancy 🎁</h1>
+    <p style="font-size:1.7rem;">
+      HAPPY NEW YEAR NANCY 💗  
+      YOU ARE REALLY REALLY SPECIAL ✨
+    </p>
+  </div>
+</section>
+
+<script>
+/* Typing */
+const text="🎆 Happy New Year Nancy 🎆";
+let i=0;
+(function type(){
+  if(i<text.length){
+    typing.innerHTML+=text.charAt(i++);
+    setTimeout(type,100);
+  }
+})();
+
+/* Music */
+function startMagic(){ music.play(); }
+
+/* Cute words */
+const words=["Cute","Adorable","Lovely","Beautiful","かわいい","귀여워","Carina","Bonita","Lindo","Süß","Jolie"];
+let w=0;
+setInterval(()=>{ cuteWord.innerText=words[w]+" 💖"; w=(w+1)%words.length; },1500);
+
+/* Countdown */
+const newYear=new Date(new Date().getFullYear()+1,0,1);
+setInterval(()=>{
+  const d=newYear-new Date();
+  if(d<=0){
+    nyText.innerText="🎉 HAPPY NEW YEAR NANCY 🎉";
+    startFireworks();
+    return;
+  }
+  days.innerText=Math.floor(d/86400000);
+  hours.innerText=Math.floor(d/3600000)%24;
+  minutes.innerText=Math.floor(d/60000)%60;
+  seconds.innerText=Math.floor(d/1000)%60;
+},1000);
+
+/* Secret */
+function unlock(){
+  if(prompt("Enter the secret number 💭")==="48"){
+    secret.style.display="flex";
+    startFireworks();
+  }
+}
+
+/* Hearts */
+for(let i=0;i<30;i++){
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="💗";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(4+Math.random()*4)+"s";
+  document.body.appendChild(h);
+}
+
+/* Fireworks */
+const c=fireworks,ctx=c.getContext("2d");
+c.width=innerWidth;c.height=innerHeight;
+let fw=[],pt=[];
+class F{constructor(x,y){this.x=x;this.y=c.height;this.t=y;this.c=`hsl(${Math.random()*360},100%,60%)`;}
+u(){this.y-=7;if(this.y<=this.t){for(let i=0;i<80;i++)pt.push(new P(this.x,this.y,this.c));return true;}}
+d(){ctx.fillStyle=this.c;ctx.fillRect(this.x,this.y,3,8);}}
+class P{constructor(x,y,c){this.x=x;this.y=y;this.c=c;this.dx=(Math.random()-0.5)*6;this.dy=(Math.random()-0.5)*6;this.l=100;}
+u(){this.dy+=0.05;this.x+=this.dx;this.y+=this.dy;this.l--;}
+d(){ctx.beginPath();ctx.arc(this.x,this.y,2,0,Math.PI*2);ctx.fillStyle=this.c;ctx.fill();}}
+function startFireworks(){setInterval(()=>fw.push(new F(Math.random()*c.width,Math.random()*c.height/2)),900);}
+(function anim(){
+  ctx.fillStyle="rgba(0,0,0,0.2)";
+  ctx.fillRect(0,0,c.width,c.height);
+  fw=fw.filter(f=>{f.d();return !f.u();});
+  pt=pt.filter(p=>{p.u();p.d();return p.l>0;});
+  requestAnimationFrame(anim);
+})();
+</script>
+
+</body>
 </html>
