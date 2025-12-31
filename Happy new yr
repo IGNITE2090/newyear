@@ -31,8 +31,8 @@ canvas{position:fixed;inset:0;pointer-events:none;z-index:0;}
 #surpriseText{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:5rem;color:#ff4d6d;text-shadow:0 0 20px #fff,0 0 40px #ff4d6d,0 0 60px #ff4d6d;display:none;z-index:5;text-align:center;animation:surprisePop 2s ease forwards;}
 @keyframes surprisePop{0%{transform:translate(-50%,-50%) scale(0);}50%{transform:translate(-50%,-50%) scale(1.2);}100%{transform:translate(-50%,-50%) scale(1);}}
 /* Secret love page */
-#secretPage{display:none;flex-direction:column;padding:20px;background:linear-gradient(135deg,#fddb92,#d1fdff);color:#333;min-height:100vh;}
-#secretBox{background:rgba(255,255,255,0.85);color:#333;padding:30px;border-radius:25px;width:90%;max-width:900px;height:80vh;overflow-y:auto;font-size:1.3rem;line-height:2;animation:fadeIn 2s ease;margin-bottom:20px;}
+#secretPage{display:flex;flex-direction:column;padding:20px;background:linear-gradient(135deg,#fddb92,#d1fdff);color:#333;min-height:100vh;align-items:center;}
+#secretBox{background:rgba(255,255,255,0.85);color:#333;padding:30px;border-radius:25px;width:90%;max-width:900px;height:80vh;overflow-y:auto;font-size:1.3rem;line-height:2;animation:fadeIn 2s ease;margin-top:20px;}
 @keyframes fadeIn{from{opacity:0; transform:scale(0.95);}to{opacity:1; transform:scale(1);}}
 #lock{background:rgba(0,0,0,0.4);padding:40px;border-radius:25px;color:white;display:flex;flex-direction:column;align-items:center;}
 #lock input{padding:12px;width:80%;max-width:300px;border:none;border-radius:20px;font-size:1.1rem;text-align:center;outline:none;}
@@ -54,6 +54,7 @@ canvas{position:fixed;inset:0;pointer-events:none;z-index:0;}
     <h1 id="typing"></h1>
     <p>This New Year is special… because it’s for <b>Wifey</b> 💖</p>
     <button onclick="startMagic()">Start ✨</button>
+    <button onclick="document.getElementById('secretPage').scrollIntoView({behavior:'smooth'})">Open Secret Page 💖</button>
   </div>
 </section>
 
