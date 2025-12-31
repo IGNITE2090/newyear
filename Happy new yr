@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy New Year Nancy 💖</title>
+<title>Happy New Year Wifey 💖</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
@@ -44,11 +44,26 @@ button:hover{transform:scale(1.1);}
 
 /* Fireworks canvas */
 canvas{position:fixed;inset:0;pointer-events:none;z-index:0;}
+
+/* Surprise text */
+#surpriseText{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:5rem;
+  color:#ff4d6d;
+  text-shadow: 0 0 20px #fff,0 0 40px #ff4d6d,0 0 60px #ff4d6d;
+  display:none;
+  z-index:5;
+  text-align:center;
+}
 </style>
 </head>
 <body>
 
 <canvas id="fireworks"></canvas>
+<div id="surpriseText">HAPPY NEW YEAR WIFEY 💖</div>
 <audio id="music" loop>
   <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_5cdd6e60c7.mp3" type="audio/mpeg">
 </audio>
@@ -57,7 +72,7 @@ canvas{position:fixed;inset:0;pointer-events:none;z-index:0;}
 <section class="animated-bg" style="background:linear-gradient(135deg,#ff758c,#ff7eb3);">
   <div class="card">
     <h1 id="typing"></h1>
-    <p>This New Year is special… because it’s for <b>Nancy</b> 💖</p>
+    <p>This New Year is special… because it’s for <b>Wifey</b> 💖</p>
     <button onclick="startMagic()">Start ✨</button>
   </div>
 </section>
@@ -65,7 +80,7 @@ canvas{position:fixed;inset:0;pointer-events:none;z-index:0;}
 <!-- COUNTDOWN -->
 <section class="animated-bg" style="background:linear-gradient(135deg,#000428,#004e92);">
   <div class="card">
-    <h1 id="nyText" class="heartbeat">Countdown for Nancy 🎆</h1>
+    <h1 id="nyText" class="heartbeat">Countdown for Wifey 🎆</h1>
     <div id="countdown">
       <div class="time"><span id="days">0</span>Days</div>
       <div class="time"><span id="hours">0</span>Hours</div>
@@ -97,24 +112,10 @@ canvas{position:fixed;inset:0;pointer-events:none;z-index:0;}
   </div>
 </section>
 
-<section class="animated-bg" style="background:linear-gradient(135deg,#fbc2eb,#a6c1ee);">
-  <div class="card">
-    <h1>Hey Nancy 😌</h1>
-    <p>I love you when you smile.<br>I love you when you talk.<br>I love you when you’re just you 💕</p>
-  </div>
-</section>
-
-<section class="animated-bg" style="background:linear-gradient(135deg,#ffecd2,#fcb69f);">
-  <div class="card">
-    <h1 class="heartbeat">Forever 💖</h1>
-    <p style="font-size:1.6rem;">Thank you for making my year beautiful.<br>I love you. Always. 🤍</p>
-  </div>
-</section>
-
 <script>
 window.onload = () => {
   /* Typing effect */
-  const msg="🎆 Happy New Year Nancy 🎆";
+  const msg="🎆 Happy New Year Wifey 🎆";
   let i=0;
   typing.innerHTML="";
   (function type(){
@@ -125,17 +126,21 @@ window.onload = () => {
   })();
 
   /* Music + Start Fireworks */
+  const music = document.getElementById("music");
   window.startMagic = () => {
     music.play();
     startFireworks();
   };
 
   /* Countdown */
-  const newYear=new Date(new Date().getFullYear()+1,0,1);
+  const newYear = new Date(new Date().getFullYear()+1,0,1);
+  const surpriseText = document.getElementById("surpriseText");
+
   setInterval(()=>{
-    const d=newYear-new Date();
+    const d = newYear - new Date();
     if(d<=0){
-      nyText.innerText="🎉 HAPPY NEW YEAR NANCY 🎉";
+      nyText.innerText="🎉 HAPPY NEW YEAR WIFEY 🎉";
+      surpriseText.style.display="block"; // Show surprise text
       startFireworks();
       return;
     }
@@ -203,7 +208,6 @@ window.onload = () => {
     requestAnimationFrame(anim);
   })();
 
-  /* Resize canvas on window resize */
   window.addEventListener("resize",()=>{
     c.width=innerWidth;
     c.height=innerHeight;
